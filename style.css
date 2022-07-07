@@ -1,5 +1,269 @@
-html,
+* {
+  font-family: "Inter", sans-serif;
+}
 body {
+  background: linear-gradient(
+    90deg,
+    #85f6b8 0%,
+    rgba(142, 217, 235, 0.85) 99.84%
+  );
+  background-blend-mode: darken;
+  color: #555555;
+}
+
+.container {
   height: 100%;
   width: 100%;
+}
+.main-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quiz-wrapper {
+  background-color: #fff;
+  width: 428px;
+  padding: 0 30px;
+  height: 588px;
+}
+
+.quiz-wrapper button {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  color: #ffffff;
+  width: 169px;
+  height: 44px;
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.25));
+  border: none;
+}
+.content-wrapper .info-content {
+  text-align: center;
+  font-style: normal;
+  padding: 66px 0;
+}
+
+.content-wrapper .info-content h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.content-wrapper .info-content p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.login-container .info-content P {
+  padding-bottom: 22px;
+}
+
+.login-container .info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 26px;
+}
+
+.login-container .info-content .msg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+}
+.login-container .form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 33px;
+}
+
+.login-container .form-content .form-row {
+  text-align: left;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.login-container .form-content .form-row label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 10px;
+}
+
+.login-container .form-content .form-row input {
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  padding: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 9px;
+  outline: none;
+}
+
+.login-container .form-content .form-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container .form-content .form-btn button {
+  background: #028a3d;
+}
+
+.question-container .info-content {
+  font-style: normal;
+  padding: 63px 0;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 23px;
+}
+.question-container .progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.question-container .progress-container .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 24px;
+}
+.question-container .progress-container .progress-bar {
+  width: 100%;
+  height: 7px;
+  background: #dddddd;
+  border-radius: 7px;
+}
+
+.question-container .progress-container .progress-bar .progress-bar-fill {
+  background: #028a3d;
+  border-radius: 7px;
+  height: 100%;
+}
+
+.question-container .response-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 28px;
+  margin-top: 9px;
+  margin-bottom: 20px;
+}
+
+.question-container .response-container .response-item {
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  height: 45px;
+  padding: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.question-container .response-container .response-item.selected {
+  border: 1px solid #028a3d;
+}
+
+.question-container .response-container .response-item .radio {
+  margin-right: 14px;
+  border: 1px solid #dddddd;
+  border-radius: 15px;
+  height: 15px;
+  width: 15px;
+}
+.question-container .response-container .response-item.selected .radio {
+  background: #028a3d;
+  border: 1px solid #028a3d;
+}
+.question-container .response-container .response-item .response {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.question-container .btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.question-container .btn-container button#exit {
+  background: #ec880c;
+}
+
+.question-container .btn-container button#next {
+  background: rgba(2, 138, 61, 0.42);
+}
+
+.question-container .btn-container button.enable {
+  background: #028a3d !important;
+}
+
+.score-container .info-content {
+  margin: 108px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.score-container .info-content h2 {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 36px;
+  text-align: center;
+}
+
+.score-container .info-content p.email {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.score-container .info-content .icon {
+  width: 114px;
+  height: 114px;
+  border: 10px solid #028a3d;
+  border-radius: 50%;
+}
+
+.score-container .info-content p.score {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+}
+
+.score-container .info-content .btn-container button {
+  background: #0880d6;
 }
