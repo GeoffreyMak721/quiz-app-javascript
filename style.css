@@ -28,6 +28,7 @@ body {
   width: 428px;
   padding: 0 30px;
   height: 588px;
+  overflow: hidden;
 }
 
 .quiz-wrapper button {
@@ -210,6 +211,7 @@ body {
 .question-container .btn-container {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .question-container .btn-container button#exit {
@@ -266,4 +268,41 @@ body {
 
 .score-container .info-content .btn-container button {
   background: #0880d6;
+}
+
+@media screen and (max-height: 620px) {
+  .main-wrapper {
+    padding: 16px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .main-wrapper {
+    padding: 16px;
+  }
+
+  .quiz-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .msg-container br {
+    display: none;
+  }
+
+  .quiz-wrapper button {
+    /* width: 117px; */
+  }
+}
+
+@media screen and (max-width: 248px) {
+  .question-container .btn-container {
+    flex-direction: column;
+  }
+
+  .quiz-wrapper button {
+    width: 100%;
+    padding: 0 1em;
+  }
 }
