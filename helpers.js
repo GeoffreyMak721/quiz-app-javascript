@@ -22,7 +22,7 @@ class Helpers {
   static goToPage(appContainer, page) {
     const pageData = this.getPageData(page);
     appContainer.innerHTML = Template.getPage(page, pageData);
-    this.bindPageEvent(page, appContainer);
+    this.bindPageEvents(appContainer, page);
   }
 
   static getPageData(page) {
@@ -46,31 +46,52 @@ class Helpers {
     }
   }
 
-  static bindPageEvent(page, appContainer) {
+  static addElementEvent(
+    selectors,
+    eventType,
+    listener,
+    parentElement = document,
+    preventDefault = true
+  ) {
+    parentElement.querySelector(selectors)?.addEventListener(eventType, (e) => {
+      if (preventDefault) e.preventDefault();
+      listener(e);
+    });
+  }
+
+  static bindPageEvents(appContainer, page) {
     switch (page) {
       case Template.QUESTION_PAGE: {
-        document.querySelector("#exit").addEventListener("click", (e) => {
-          e.preventDefault();
-          this.goToPage(appContainer, Template.SCORE_PAGE);
-        });
+        this.addElementEvent(
+          "#exit",
+          "click",
+          (e) => this.goToPage(appContainer, Template.SCORE_PAGE),
+          appContainer
+        );
         break;
       }
 
       case Template.LOGIN_PAGE: {
-        document.querySelector("form").addEventListener("submit", (e) => {
-          e.preventDefault();
-          if (this.validateForm(e.target)) {
-            this.goToPage(appContainer, Template.QUESTION_PAGE);
-          }
-        });
+        this.addElementEvent(
+          "form",
+          "submit",
+          (e) => {
+            if (this.validateForm(e.target)) {
+              this.goToPage(appContainer, Template.QUESTION_PAGE);
+            }
+          },
+          appContainer
+        );
         break;
       }
 
       case Template.SCORE_PAGE: {
-        document.querySelector("#home-btn").addEventListener("click", (e) => {
-          e.preventDefault();
-          this.goToPage(appContainer, Template.LOGIN_PAGE);
-        });
+        this.addElementEvent(
+          "#home-btn",
+          "click",
+          (e) => this.goToPage(appContainer, Template.LOGIN_PAGE),
+          appContainer
+        );
         break;
       }
       default:
