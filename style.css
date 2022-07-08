@@ -42,6 +42,7 @@ body {
   height: 44px;
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.25));
   border: none;
+  cursor: pointer;
 }
 .content-wrapper .info-content {
   text-align: center;
@@ -93,7 +94,7 @@ body {
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  gap: 11px;
+  gap: 4px;
 }
 
 .login-container .form-content .form-row label {
@@ -101,6 +102,8 @@ body {
   font-weight: 400;
   font-size: 12px;
   line-height: 10px;
+  margin-bottom: 5px;
+  transition: color ease-in-out 0.4s;
 }
 
 .login-container .form-content .form-row input {
@@ -112,6 +115,31 @@ body {
   font-size: 11px;
   line-height: 9px;
   outline: none;
+  transition: border ease-in-out 0.4s;
+}
+.login-container .form-content .form-row input:focus {
+  border: 1px solid #028a3d;
+}
+
+.login-container .form-content .form-row.error input {
+  border: 1px solid #ff3838;
+}
+
+.login-container .form-content .form-row.error label {
+  color: #ff3838;
+}
+
+.login-container .form-content .form-row span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 11px;
+  color: #ff3838;
+  opacity: 0;
+  transition: opacity ease-in-out 0.6s;
+}
+.login-container .form-content .form-row.error span {
+  opacity: 1;
 }
 
 .login-container .form-content .form-btn {
@@ -184,12 +212,27 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
+}
+
+.question-container .response-container .response-item:hover {
+  background-color: rgba(236, 135, 12, 0.075);
+  border: 1px solid #ec880c;
+}
+.question-container .response-container .response-item:hover .radio {
+  border: 1px solid #ec880c;
+}
+
+.question-container .response-container .response-item.selected:hover {
+  background: rgba(2, 138, 61, 0.075);
 }
 
 .question-container .response-container .response-item.selected {
   border: 1px solid #028a3d;
 }
 
+.question-container .response-container .response-item.selected:hover {
+}
 .question-container .response-container .response-item .radio {
   margin-right: 14px;
   border: 1px solid #dddddd;
@@ -255,7 +298,13 @@ body {
   width: 114px;
   height: 114px;
   border: 10px solid #028a3d;
+  color: #028a3d;
   border-radius: 50%;
+}
+
+.score-container .info-content.error .icon {
+  border: 10px solid #ff3838;
+  color: #ff3838;
 }
 
 .score-container .info-content p.score {
