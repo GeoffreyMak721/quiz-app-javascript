@@ -1,36 +1,38 @@
 class Template {
-  static QUESTION_PAGE = "question_page";
-  static LOGIN_PAGE = "login_page";
-  static SCORE_PAGE = "score_page";
-  static MAX_QUESTION = 20;
+  QUESTION_PAGE = "question_page";
+  LOGIN_PAGE = "login_page";
+  SCORE_PAGE = "score_page";
 
-  static getPage(page = this.LOGIN_PAGE, pageParams) {
+  getPageTemplate(page = this.LOGIN_PAGE, pageParams) {
     switch (page) {
       case this.LOGIN_PAGE: {
-        return this._showLoginPage(pageParams);
+        return this.loginPageTemplate(pageParams);
       }
       case this.QUESTION_PAGE: {
-        return this._showQuestionPage(pageParams);
+        return this.questionPageTemplate(pageParams);
       }
       case this.SCORE_PAGE: {
-        return this._showScorePage(pageParams);
+        return this.scorePageTemplate(pageParams);
       }
       default:
-        return this._showLoginPage(pageParams);
+        return this.loginPageTemplate(pageParams);
     }
   }
 
-  static _showScorePage({ score, name, email }) {
+  scorePageTemplate({ score, name, email }) {
     return ` 
     <div class="score-container content-wrapper">
       <div class="content">
         <div class="info-content${
-          score < this.MAX_QUESTION / 2 ? " error" : ""
+          score < Constants.MAX_QUESTIONS / 2 ? " error" : ""
         }">
           <h2 class="name">${name}</h2>
           <div><p class="email">${email}</p></div>
-          <div class="icon"></div>
-          <p class="score">${score}/${this.MAX_QUESTION}</p>
+          <div class="icon">
+            <i class="fa-solid fa-check ch"></i>
+            <i class="fa-solid fa-xmark xm"></i>
+          </div>
+          <p class="score">${score}/${Constants.MAX_QUESTIONS}</p>
           <div class="btn-container">
             <button id="home-btn">Accueil</button>
           </div>
@@ -39,7 +41,7 @@ class Template {
     </div>`;
   }
 
-  static _showLoginPage() {
+  loginPageTemplate() {
     return ` 
     <div class="login-container content-wrapper">
       <div class="content">
@@ -79,7 +81,7 @@ class Template {
     </div>`;
   }
 
-  static _showQuestionPage({ question, responses, questionNo }) {
+  questionPageTemplate({ question, responses, questionNo }) {
     return ` 
     <div class="question-container content-wrapper">
       <div class="content">
@@ -87,28 +89,30 @@ class Template {
           <p class="question">${question}</p>
           <div class="progress-container">
             <div class="info">
-              <span class="q">Question ${questionNo}/15</span>
-              <span class="time">30</span>
+              <span class="q">
+                Question ${questionNo}/${Constants.MAX_QUESTIONS}
+              </span>
+              <span class="time">${Constants.MAX_SECONDS}</span>
             </div>
             <div class="progress-bar">
-              <div class="progress-bar-fill" style="width: 50%"></div>
+              <div class="progress-bar-fill" style="width: 100%" id="100"></div>
             </div>
           </div>
           <div class="response-container">
-          ${responses
-            .map(
-              (r) => `
-                <div class="response-item">
+            ${responses
+              .map(
+                (r, idx) => `
+                <div class="response-item" id="${idx}">
                   <div class="radio"></div>
                   <p class="response">${r}</p>
                 </div>
               `
-            )
-            .join("")}
+              )
+              .join("")}
           </div>
           <div class="btn-container">
             <button id="exit">Quitter</button>
-            <button id="next" class="enable">Suivant</button>
+            <button id="next" class="">Suivant</button>
           </div>
         </div>
       </div>
