@@ -4,6 +4,17 @@
 class Constants {
   static MAX_QUESTIONS = 15;
   static MAX_SECONDS = 60;
+  static EMAIL_PATTERN = /^(.{3})@(.{3})\.(.{3})$/gi;
+  static ERROR_MESSAGES = {
+    name: [
+      "N’oubliez pas de renseigner votre nom avant de commencer le Quiz.",
+      "Votre nom doit avoir au moins 2 caractères",
+    ],
+    email: [
+      "N’oubliez pas de renseigner votre email avant de commencer le Quiz.",
+      "Votre email n'est pas valide, voici un email valid XXX@XXX.XXX",
+    ],
+  };
   static QUESTIONS = [
     {
       question: "Comment lire le jour du mois dans une date ?",
@@ -60,16 +71,6 @@ class Constants {
         "dans toutes les fonctions du document HTML",
         "dans cette fonction uniquement",
         "dans cette fonction et dans le script appelant",
-      ],
-    },
-    {
-      question: "Math.SQRT2 est",
-      responseIdx: 0,
-      responses: [
-        "la constante racine carrée de 2",
-        "une fonction de tri",
-        "la fonction racine carrée",
-        "n'existe pas en JavaScript",
       ],
     },
     {
@@ -131,16 +132,6 @@ class Constants {
       question: "Comment mettre une chaîne ch1 en minuscules ?",
       responseIdx: 0,
       responses: ["ch1.toLowerCase()", "Min(ch1)", "Lower(ch1)", "ch1.min()"],
-    },
-    {
-      question: "Que retourne Math.min(Math.E , Math.SQRT1_2 , 0.5) ?",
-      responseIdx: 1,
-      responses: [
-        "une erreur",
-        "0,5",
-        "racine carrée de 0,5",
-        "le nombre d'Euler",
-      ],
     },
     {
       question: "Comment afficher 'Bonjour' dans une boite de dialogue ?",
@@ -218,11 +209,6 @@ class Constants {
       ],
     },
     {
-      question: "alert((1||0) ? 'VRAI' : 'FAUX'); affiche",
-      responseIdx: 0,
-      responses: ["VRAI", "FAUX", "une erreur", "VF"],
-    },
-    {
       question: "Comment renvoyer un nombre aléatoire compris entre 0 et 1 ?",
       responseIdx: 2,
       responses: ["rnd()", "Math.rnd()", "Math.random()", "random()"],
@@ -235,17 +221,6 @@ class Constants {
         "navigator.os",
         "navigator.userAgent",
         "navigator.system",
-      ],
-    },
-    {
-      question:
-        "Quels sont les différents types de boutons possibles de la balise <INPUT> ?",
-      responseIdx: 3,
-      responses: [
-        "SUBMIT et RESET",
-        "SUBMIT",
-        "SUBMIT et BUTTON",
-        "SUBMIT, RESET et BUTTON",
       ],
     },
     {
@@ -266,7 +241,7 @@ class Constants {
     {
       question: "Avec quoi peut-on créer une instance d'un nouvel objet ?",
       responseIdx: 3,
-      responses: ["this", "this", "instance", "new"],
+      responses: ["->", "this", "instance", "new"],
     },
   ];
 }

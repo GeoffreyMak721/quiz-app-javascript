@@ -55,22 +55,16 @@ class Template {
               C'est fun et c'est gratuit.
             </p>
           </div>
-          <form class="form-content" action="">
+          <form class="form-content" action="" noValidate>
             <div class="form-row">
               <label for="name">Nom</label>
               <input type="text" name="name" id="name" />
-              <span
-                >N’oubliez pas de renseigner votre nom avant de commencer le
-                Quiz.</span
-              >
+              <span>name error message area</span>
             </div>
             <div class="form-row">
               <label for="email">Email</label>
               <input type="email" name="email" id="email" />
-              <span
-                >N’oubliez pas de renseigner votre email avant de commencer le
-                Quiz.</span
-              >
+              <span>email error message area</span>
             </div>
             <div class="form-btn">
               <button type="submit">Commencer</button>

@@ -49,9 +49,35 @@ class App extends Template {
     if (this.sessionQuestions !== null) {
       return this.sessionQuestions;
     }
-    const questions = Constants.QUESTIONS.slice(0, Constants.MAX_QUESTIONS);
+    const questions = this.getShuffledQuestions().slice(
+      0,
+      Constants.MAX_QUESTIONS
+    );
     this.sessionQuestions = questions;
     return questions;
+  }
+
+  /**
+   * This method shuffle all questions and response
+   * @returns {Array} the shuffled questions
+   */
+  getShuffledQuestions() {
+    return [
+      ...Constants.QUESTIONS.map((q) => {
+        const goodResponse = q.responses[q.responseIdx];
+        const shuffledResponses = [...q.responses].sort(
+          () => Math.random() - 0.5
+        );
+        const newResponseIdx = shuffledResponses.findIndex(
+          (r) => r === goodResponse
+        );
+        return {
+          ...q,
+          responseIdx: newResponseIdx,
+          responses: shuffledResponses,
+        };
+      }),
+    ].sort(() => Math.random() - 0.5);
   }
 
   /**
@@ -85,13 +111,37 @@ class App extends Template {
   validateForm(form) {
     let isValid = true;
     for (const e of form.elements) {
-      if (!["name", "email"].includes(e.name)) continue;
-      if (!e.value) {
+      const setError = (field, errorIndex) => {
         isValid = false;
         e.parentElement.classList.add("error");
-      } else {
-        this[e.name] = e.value;
-        e.parentElement.classList.remove("error");
+        e.parentElement.querySelector("span").textContent =
+          Constants.ERROR_MESSAGES[field][errorIndex];
+      };
+      switch (e.name) {
+        case "name": {
+          if (!e.value) {
+            setError("name", 0);
+          } else if (e.value.length < 2) {
+            setError("name", 1);
+          } else {
+            this.name = e.value;
+            e.parentElement.classList.remove("error");
+          }
+          break;
+        }
+        case "email": {
+          if (!e.value) {
+            setError("email", 0);
+          } else if (e.value.match(Constants.EMAIL_PATTERN) === null) {
+            setError("email", 1);
+          } else {
+            this.email = e.value;
+            e.parentElement.classList.remove("error");
+          }
+          break;
+        }
+        default:
+          break;
       }
     }
     return isValid;
@@ -164,7 +214,7 @@ class App extends Template {
           this.goToPage(this.SCORE_PAGE);
         };
 
-        const responseSelectAction = ({ target: item }) => {
+        const responseSelectAction = ({ currentTarget: item }) => {
           if (item.classList.contains("selected")) return;
           const questions = this.getOrGenerateQuestions();
           const responseIdx = questions[this.currentQuestionIdx].responseIdx;
