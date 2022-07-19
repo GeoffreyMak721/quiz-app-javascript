@@ -43,44 +43,6 @@ class App extends Template {
   }
 
   /**
-   * This method help us to get or generate questions needed when the app running
-   */
-  getOrGenerateQuestions() {
-    if (this.sessionQuestions !== null) {
-      return this.sessionQuestions;
-    }
-    const questions = this.getShuffledQuestions().slice(
-      0,
-      Constants.MAX_QUESTIONS
-    );
-    this.sessionQuestions = questions;
-    return questions;
-  }
-
-  /**
-   * This method shuffle all questions and response
-   * @returns {Array} the shuffled questions
-   */
-  getShuffledQuestions() {
-    return [
-      ...Constants.QUESTIONS.map((q) => {
-        const goodResponse = q.responses[q.responseIdx];
-        const shuffledResponses = [...q.responses].sort(
-          () => Math.random() - 0.5
-        );
-        const newResponseIdx = shuffledResponses.findIndex(
-          (r) => r === goodResponse
-        );
-        return {
-          ...q,
-          responseIdx: newResponseIdx,
-          responses: shuffledResponses,
-        };
-      }),
-    ].sort(() => Math.random() - 0.5);
-  }
-
-  /**
    * This method allow us to get needed data by a page
    * @param {String} page
    * @returns {any} the data need to the specified page
@@ -101,94 +63,6 @@ class App extends Template {
       default:
         return null;
     }
-  }
-
-  /**
-   * This method allow us to validate form and if necessary, show error message
-   * @param {HTMLFormElement} form
-   * @returns {Boolean} if the form is valid
-   */
-  validateForm(form) {
-    let isValid = true;
-    for (const e of form.elements) {
-      const setError = (field, errorIndex) => {
-        isValid = false;
-        e.parentElement.classList.add("error");
-        e.parentElement.querySelector("span").textContent =
-          Constants.ERROR_MESSAGES[field][errorIndex];
-      };
-      switch (e.name) {
-        case "name": {
-          if (!e.value) {
-            setError("name", 0);
-          } else if (e.value.length < 2) {
-            setError("name", 1);
-          } else {
-            this.name = e.value;
-            e.parentElement.classList.remove("error");
-          }
-          break;
-        }
-        case "email": {
-          if (!e.value) {
-            setError("email", 0);
-          } else if (e.value.match(Constants.EMAIL_PATTERN) === null) {
-            setError("email", 1);
-          } else {
-            this.email = e.value;
-            e.parentElement.classList.remove("error");
-          }
-          break;
-        }
-        default:
-          break;
-      }
-    }
-    return isValid;
-  }
-
-  /**
-   * This is a method that help us to bind quickly an event in element
-   * @param {HTMLElementTagNameMap} selectors
-   * @param {DocumentEventMap} eventType
-   * @param {(ev: Event) => any} listener
-   * @param {HTMLElement} parentElement
-   * @param {Boolean} preventDefault
-   */
-  addElementEvent(
-    selectors,
-    eventType,
-    listener,
-    parentElement = document,
-    preventDefault = true
-  ) {
-    parentElement.querySelector(selectors)?.addEventListener(eventType, (e) => {
-      if (preventDefault) e.preventDefault();
-      listener(e);
-    });
-  }
-
-  /**
-   * This is a method that help us to bind quickly  events in elements
-   * @param {HTMLElementTagNameMap} selectors
-   * @param {DocumentEventMap} eventType
-   * @param {(ev: Event) => any} listener
-   * @param {HTMLElement} parentElement
-   * @param {Boolean} preventDefault
-   */
-  addElementsEvent(
-    selectors,
-    eventType,
-    listener,
-    parentElement = document,
-    preventDefault = true
-  ) {
-    parentElement.querySelectorAll(selectors)?.forEach((element) =>
-      element.addEventListener(eventType, (e) => {
-        if (preventDefault) e.preventDefault();
-        listener(e);
-      })
-    );
   }
 
   /**
@@ -323,8 +197,135 @@ class App extends Template {
         );
         break;
       }
+
       default:
         return null;
     }
+  }
+
+  /**
+   * This method help us to get or generate questions needed when the app running
+   */
+  getOrGenerateQuestions() {
+    if (this.sessionQuestions !== null) {
+      return this.sessionQuestions;
+    }
+    const questions = this.getShuffledQuestions().slice(
+      0,
+      Constants.MAX_QUESTIONS
+    );
+    this.sessionQuestions = questions;
+    return questions;
+  }
+
+  /**
+   * This method shuffle all questions and response
+   * @returns {Array} the shuffled questions
+   */
+  getShuffledQuestions() {
+    return [
+      ...Constants.QUESTIONS.map((q) => {
+        const goodResponse = q.responses[q.responseIdx];
+        const shuffledResponses = [...q.responses].sort(
+          () => Math.random() - 0.5
+        );
+        const newResponseIdx = shuffledResponses.findIndex(
+          (r) => r === goodResponse
+        );
+        return {
+          ...q,
+          responseIdx: newResponseIdx,
+          responses: shuffledResponses,
+        };
+      }),
+    ].sort(() => Math.random() - 0.5);
+  }
+
+  /**
+   * This method allow us to validate form and if necessary, show error message
+   * @param {HTMLFormElement} form
+   * @returns {Boolean} if the form is valid
+   */
+  validateForm(form) {
+    let isValid = true;
+    for (const e of form.elements) {
+      const setError = (field, errorIndex) => {
+        isValid = false;
+        e.parentElement.classList.add("error");
+        e.parentElement.querySelector("span").textContent =
+          Constants.ERROR_MESSAGES[field][errorIndex];
+      };
+      switch (e.name) {
+        case "name": {
+          if (!e.value) {
+            setError("name", 0);
+          } else if (e.value.length < 2) {
+            setError("name", 1);
+          } else {
+            this.name = e.value;
+            e.parentElement.classList.remove("error");
+          }
+          break;
+        }
+        case "email": {
+          if (!e.value) {
+            setError("email", 0);
+          } else if (e.value.match(Constants.EMAIL_PATTERN) === null) {
+            setError("email", 1);
+          } else {
+            this.email = e.value;
+            e.parentElement.classList.remove("error");
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    }
+    return isValid;
+  }
+
+  /**
+   * This is a method that help us to bind quickly an event in element
+   * @param {HTMLElementTagNameMap} selectors
+   * @param {DocumentEventMap} eventType
+   * @param {(ev: Event) => any} listener
+   * @param {HTMLElement} parentElement
+   * @param {Boolean} preventDefault
+   */
+  addElementEvent(
+    selectors,
+    eventType,
+    listener,
+    parentElement = document,
+    preventDefault = true
+  ) {
+    parentElement.querySelector(selectors)?.addEventListener(eventType, (e) => {
+      if (preventDefault) e.preventDefault();
+      listener(e);
+    });
+  }
+
+  /**
+   * This is a method that help us to bind quickly  events in elements
+   * @param {HTMLElementTagNameMap} selectors
+   * @param {DocumentEventMap} eventType
+   * @param {(ev: Event) => any} listener
+   * @param {HTMLElement} parentElement
+   * @param {Boolean} preventDefault
+   */
+  addElementsEvent(
+    selectors,
+    eventType,
+    listener,
+    parentElement = document,
+    preventDefault = true
+  ) {
+    parentElement.querySelectorAll(selectors)?.forEach((element) =>
+      element.addEventListener(eventType, (e) => {
+        if (preventDefault) e.preventDefault();
+        listener(e);
+      })
+    );
   }
 }
