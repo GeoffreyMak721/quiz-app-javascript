@@ -4,7 +4,7 @@
 class Constants {
   static MAX_QUESTIONS = 15;
   static MAX_SECONDS = 60;
-  static EMAIL_PATTERN = /^(.{3})@(.{3})\.(.{3})$/gi;
+  static EMAIL_PATTERN = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
   static ERROR_MESSAGES = {
     name: [
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz.",
