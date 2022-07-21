@@ -68,6 +68,10 @@ body {
   line-height: 18px;
 }
 
+.content-wrapper .info-content p.question {
+  min-height: 36px;
+}
+
 .login-container .info-content P {
   padding-bottom: 22px;
 }
@@ -138,9 +142,9 @@ body {
   border: 1px solid #ff3838;
 }
 
-.login-container .form-content .form-row.error label {
+/* .login-container .form-content .form-row.error label {
   color: #ff3838;
-}
+} */
 
 .login-container .form-content .form-row span {
   font-style: normal;
@@ -219,11 +223,11 @@ body {
 @keyframes progress-bar-countdown {
   0% {
     width: 100%;
-    background: #028a3d;
+    /* background: #028a3d; */
   }
   100% {
     width: 0%;
-    background: #ff3838;
+    /* background: #ff3838; */
   }
 }
 
@@ -248,17 +252,17 @@ body {
   cursor: pointer;
 }
 
-.question-container .response-container .response-item:hover {
+/* .question-container .response-container .response-item:hover {
   background-color: rgba(236, 135, 12, 0.075);
   border: 1px solid #ec880c;
 }
 .question-container .response-container .response-item:hover .radio {
   border: 1px solid #ec880c;
-}
+} */
 
-.question-container .response-container .response-item.selected:hover {
+/* .question-container .response-container .response-item.selected:hover {
   background: rgba(2, 138, 61, 0.075);
-}
+} */
 
 .question-container .response-container .response-item.selected {
   border: 1px solid #028a3d;

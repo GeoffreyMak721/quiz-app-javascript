@@ -152,7 +152,7 @@ class App extends Template {
         clearInterval(this.intervalSecondId);
 
         this.intervalSecondId = setInterval(() => {
-          console.log("tic");
+          // console.log("tic");
           if (this.remainSeconds === 0) {
             clearInterval(this.intervalSecondId);
             nextPageAction();
