@@ -1,32 +1,31 @@
 class Template {
-  QUESTION_PAGE = "question_page";
-  LOGIN_PAGE = "login_page";
-  SCORE_PAGE = "score_page";
+	QUESTION_PAGE = "question_page";
+	LOGIN_PAGE = "login_page";
+	SCORE_PAGE = "score_page";
 
-  getPageTemplate(page = this.LOGIN_PAGE, pageParams) {
-    switch (page) {
-      case this.LOGIN_PAGE: {
-        return this.loginPageTemplate(pageParams);
-      }
-      case this.QUESTION_PAGE: {
-        return this.questionPageTemplate(pageParams);
-      }
-      case this.SCORE_PAGE: {
-        return this.scorePageTemplate(pageParams);
-      }
-      default:
-        return this.loginPageTemplate(pageParams);
-    }
-  }
+	getPageTemplate(page = this.LOGIN_PAGE, pageParams) {
+		switch (page) {
+			case this.LOGIN_PAGE: {
+				return this.loginPageTemplate(pageParams);
+			}
+			case this.QUESTION_PAGE: {
+				return this.questionPageTemplate(pageParams);
+			}
+			case this.SCORE_PAGE: {
+				return this.scorePageTemplate(pageParams);
+			}
+			default:
+				return this.loginPageTemplate(pageParams);
+		}
+	}
 
-  scorePageTemplate({ score, name, email }) {
-    return ` 
+	scorePageTemplate({ score, name, email }) {
+		return ` 
     <div class="score-container content-wrapper">
       <div class="content">
-        <div class="info-content${
-          score < Constants.MAX_QUESTIONS / 2 ? " error" : ""
-        }">
-          <h2 class="name">${name}</h2>
+        <div class="info-content${score < Constants.MAX_QUESTIONS / 2 ? " error" : ""
+			}">
+          <h1 class="name">${name}</h1>
           <div><p class="email">${email}</p></div>
           <div class="icon">
             <i class="fa-solid fa-check ch"></i>
@@ -39,15 +38,15 @@ class Template {
         </div>
       </div>
     </div>`;
-  }
+	}
 
-  loginPageTemplate() {
-    return ` 
+	loginPageTemplate() {
+		return ` 
     <div class="login-container content-wrapper">
       <div class="content">
         <div class="info-content">
           <div class="msg-container">
-            <h2>JavaScript Quiz</h2>
+            <h1>JavaScript Quiz</h1>
             <p>
               Évaluez vos connaissances en JavaScript en<br />
               répondant aux questions que nous avons spécialement sélectionnées
@@ -58,12 +57,12 @@ class Template {
           <form class="form-content" action="" noValidate>
             <div class="form-row">
               <label for="name">Nom</label>
-              <input type="text" name="name" id="name" />
+              <input type="text" name="name" id="name" placeholder="Joseph" />
               <span>name error message area</span>
             </div>
             <div class="form-row">
               <label for="email">Email</label>
-              <input type="email" name="email" id="email" />
+              <input type="email" name="email" id="email" placeholder="joseph@kinshasadigital.com" />
               <span>email error message area</span>
             </div>
             <div class="form-btn">
@@ -73,10 +72,10 @@ class Template {
         </div>
       </div>
     </div>`;
-  }
+	}
 
-  questionPageTemplate({ question, responses, questionNo }) {
-    return ` 
+	questionPageTemplate({ question, responses, questionNo }) {
+		return ` 
     <div class="question-container content-wrapper">
       <div class="content">
         <div class="info-content">
@@ -94,15 +93,15 @@ class Template {
           </div>
           <div class="response-container">
             ${responses
-              .map(
-                (r, idx) => `
+				.map(
+					(r, idx) => `
                 <div class="response-item" id="${idx}">
                   <div class="radio"></div>
                   <p class="response">${r}</p>
                 </div>
               `
-              )
-              .join("")}
+				)
+				.join("")}
           </div>
           <div class="btn-container">
             <button id="exit">Quitter</button>
@@ -111,5 +110,5 @@ class Template {
         </div>
       </div>
     </div>`;
-  }
+	}
 }

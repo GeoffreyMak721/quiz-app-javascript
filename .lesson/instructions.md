@@ -6,7 +6,7 @@ Kinshasa Digital Academy (KDA) est le premier centre de formation d'excellence a
 
 Chaque année KDA propose des formations en développement web et en marketing digital.
 
-Afin de permettre à ses apprenants développeur d'auto évalué leurs niveaux en JavaScript, KDA souhaite mettre en place une plate-forme de test en ligne.
+Afin de permettre à ses apprenants développeur d'autoévaluer leurs niveaux en JavaScript, KDA souhaite mettre en place une plate-forme de test en ligne.
 
 ## Exigences technique
 
@@ -17,7 +17,7 @@ Afin de permettre à ses apprenants développeur d'auto évalué leurs niveaux e
 ## Modalités pédagogiques
 - Le travail est individuel.
 - Le travail doit être livré dans 2 semaines.
-- Le client exige que travail doit etre réaliser avec vanilla JavaScript.
+- Le client exige que travail soit réalisé avec vanilla JavaScript.
   
 ## Ressources 
 -  [La maquette](https://www.figma.com/file/Gv9YtBcVltAQBeGv4tn6sK/KDA-Quiz-APP?node-id=0%3A1)
